@@ -10,6 +10,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.facebook.FacebookSdk;
+import com.google.android.gms.maps.model.PolylineOptions;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -37,11 +40,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        PolylineOptions polylineOptions = new PolylineOptions();
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Otsisin internetist Põlva ja Tallinna koordinaadid kümnend süsteemis.
+        LatLng polva = new LatLng(58.053611, 27.055556);
+        LatLng tallinn = new LatLng(59.437222, 24.745);
+        polylineOptions.add(polva);
+        polylineOptions.add(tallinn);
+
+
+        mMap.addMarker(new MarkerOptions().position(polva).title("Marker in Põlva"));
+        mMap.addMarker(new MarkerOptions().position(tallinn).title("Marker in Tallinn"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(polva));
+        mMap.addPolyline(polylineOptions);
 
     }
 }

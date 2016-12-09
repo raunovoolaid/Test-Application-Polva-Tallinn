@@ -78,7 +78,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
                         PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(), directionPositionList, 5, Color.RED);
                         mMap.addPolyline(polylineOptions);
-                        
+
                     }
 
                     @Override
